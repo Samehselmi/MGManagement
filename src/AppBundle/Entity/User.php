@@ -21,19 +21,24 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
-
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
-    private $apiKey;
+    private $password;
     
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array();
     }
 
     public function getPassword()
     {
+        return $this->password;
+    }
+    
+    public function setPassword($password){
+     $this->password= $password;  
+     return $this;
     }
     public function getSalt()
     {
@@ -69,26 +74,5 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * Set apiKey
-     *
-     * @param string $apiKey
-     * @return User
-     */
-    public function setApiKey($apiKey)
-    {
-        $this->apiKey = $apiKey;
-
-        return $this;
-    }
-
-    /**
-     * Get apiKey
-     *
-     * @return string 
-     */
-    public function getApiKey()
-    {
-        return $this->apiKey;
-    }
 }
+
